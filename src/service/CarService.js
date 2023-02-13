@@ -76,4 +76,17 @@ module.exports = {
       });
     });
   },
+
+  deleteCar: (carId) => {
+    return new Promise((resolve, reject) => {
+      db.query("DELETE FROM car WHERE car_id = ?", carId, (error, results) => {
+        if (error) {
+          reject(error);
+          return;
+        }
+
+        resolve(results);
+      });
+    });
+  },
 };

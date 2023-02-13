@@ -28,7 +28,7 @@ module.exports = {
     res.json(savedCar);
   },
 
-  editCar: async (req, res) => {
+  editCar: (req, res) => {
     const carId = req.params.carId;
     const model = req.body.model;
     const sign = req.body.sign;
@@ -39,7 +39,11 @@ module.exports = {
       return;
     }
 
-    const editedCar = await carService.editCar(carId, model, sign);
+    const editedCar = carService.editCar(carId, model, sign);
     res.json(editedCar);
+  },
+
+  deleteCar: (req, res) => {
+    res.json(carService.deleteCar(req.params.carId));
   },
 };
