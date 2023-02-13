@@ -24,4 +24,25 @@ module.exports = {
       });
     });
   },
+
+  saveNewCar: (model, sign) => {
+    return new Promise((resolve, reject) => {
+      db.query(
+        "INSERT INTO car (model, sign) VALUES (?, ?)",
+        [model, sign],
+        (error, result) => {
+          if (error) {
+            reject(error);
+            return;
+          }
+
+          resolve({
+            car_id: result.insertId,
+            model: model,
+            sign: sign,
+          });
+        }
+      );
+    });
+  },
 };
